@@ -49,7 +49,9 @@ public class Payment {
     public PaymentMode getPaymentMode() {
         return paymentMode;
     }
-
+    public boolean isPaymentCompleted() {
+        return paymentCompleted;
+    }
     public void setPaymentMode(PaymentMode paymentMode) {
         this.paymentMode = paymentMode;
     }
