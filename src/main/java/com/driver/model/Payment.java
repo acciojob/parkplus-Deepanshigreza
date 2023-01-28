@@ -10,7 +10,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    Boolean paymentCompleted;
+    private Boolean paymentCompleted;
 
     PaymentMode paymentMode;
 
