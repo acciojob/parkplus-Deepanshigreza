@@ -16,7 +16,7 @@ public class ReservationController {
     @PostMapping("/reserveSpot")
     public Reservation reserveSpot(@RequestParam Integer userId, @RequestParam Integer parkingLotId, @RequestParam Integer timeInHours, @RequestParam Integer numberOfWheels) throws Exception{
         //Reserve a spot in the given parkingLot such that the total price is minimum. Note that the price per hour for each spot is different
-       Reservation reservation=new Reservation();
+       Reservation reservation=null;
         try {
             reservation = reservationService.reserveSpot(userId, parkingLotId, timeInHours, numberOfWheels);
         }catch (Exception e) {
