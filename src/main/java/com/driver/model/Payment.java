@@ -12,7 +12,7 @@ public class Payment {
 
     private Boolean paymentCompleted;
 
-    PaymentMode paymentMode;
+   private PaymentMode paymentMode;
 
     @OneToOne
     @JoinColumn
