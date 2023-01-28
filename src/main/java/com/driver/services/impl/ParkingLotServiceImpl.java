@@ -27,16 +27,32 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public Spot addSpot(int parkingLotId, Integer numberOfWheels, Integer pricePerHour) {
-ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
-Spot spot=new Spot(parkingLot,numberOfWheels,pricePerHour);
-spotRepository1.save(spot);
+        SpotType spotType;
+        if(numberOfWheels<=2){
+            spotType=SpotType.TWO_WHEELER;
+        } else if (numberOfWheels>2 && numberOfWheels<=4) {
+           spotType=SpotType.FOUR_WHEELER;
+        }
+        else {
+            spotType=spotType.OTHERS;
+        }
+        Spot spot=new Spot(spotType,pricePerHour,false);
+        ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
+spot.setParkingLot(parkingLot);
+List<Spot> spotList=parkingLot.getSpotList();
+if(spotList==null){
+    spotList=new ArrayList<>();
+}
+spotList.add(spot);
+parkingLot.setSpotList(spotList);
+spotRepository1.save(parkingLot);
 return spot;
     }
 
     @Override
     public void deleteSpot(int spotId) {
-Spot spot=spotRepository1.findById(spotId).get();
-spotRepository1.delete(spot);
+
+spotRepository1.deleteById(spotId);
 
     }
 
@@ -44,14 +60,19 @@ spotRepository1.delete(spot);
     public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
         ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
 List<Spot> spotList=parkingLot.getSpotList();
-Spot spot1=new Spot();
-for(Spot spot:spotList){
-    spot1=spotRepository1.findById(spotId).get();
-    spot1.setPricePerHour(pricePerHour);
-}
+Spot spot=new Spot();
+        for(Spot spot1: spotList){
+            if(spot1.getId()==spotId){
+                spot1.setPricePerHour(pricePerHour);
+                spot1.setParkingLot(parkingLot);
+                spot1=spot;
+                break;
+            }
+        }
+
 parkingLotRepository1.save(parkingLot);
-//spotRepository1.save(spot1);
-return spot1;
+spotRepository1.save(spot);
+return spot;
     }
 
     @Override
