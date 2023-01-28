@@ -1,6 +1,7 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class ParkingLot {
     public ParkingLot(String name, String address) {
         this.name = name;
         this.address = address;
+        List<Spot> spotList=new ArrayList<>();
 
     }
 

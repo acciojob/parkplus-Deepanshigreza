@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Integer userId) {
     User user=userRepository4.findById(userId).get();
-    userRepository4.delete(user);
+    userRepository4.deleteById(userId);
 
     }
 
@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
     public User updatePassword(Integer userId, String password) {
         User user=userRepository4.findById(userId).get();
         user.setPassword(password);
-        return userRepository4.save(user);
+        userRepository4.save(user);
+        return user;
     }
 
     @Override
