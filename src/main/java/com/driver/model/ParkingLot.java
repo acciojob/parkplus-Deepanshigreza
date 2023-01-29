@@ -21,7 +21,7 @@ public class ParkingLot {
     public ParkingLot(String name, String address) {
         this.name = name;
         this.address = address;
-        List<Spot> spotList=new ArrayList<>();
+        this.spotList=new ArrayList<>();
 
     }
 

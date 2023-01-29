@@ -59,8 +59,10 @@ spotRepository1.deleteById(spotId);
     @Override
     public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
         ParkingLot parkingLot=parkingLotRepository1.findById(parkingLotId).get();
-List<Spot> spotList=parkingLot.getSpotList();
-Spot spot=new Spot();
+        Spot spot=null;
+        List<Spot> spotList=parkingLot.getSpotList();
+
+
         for(Spot spot1: spotList){
             if(spot1.getId()==spotId){
                 spot1.setPricePerHour(pricePerHour);
