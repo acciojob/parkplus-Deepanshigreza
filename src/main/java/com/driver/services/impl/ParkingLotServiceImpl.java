@@ -67,7 +67,7 @@ spotRepository1.deleteById(spotId);
             if(spot1.getId()==spotId){
                 spot1.setPricePerHour(pricePerHour);
                 spot1.setParkingLot(parkingLot);
-                spot1=spot;
+                spot=spot1;
                 break;
             }
         }
