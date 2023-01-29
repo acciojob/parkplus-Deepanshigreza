@@ -1,6 +1,7 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,22 +10,22 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     int id;
+    private int id;
 
-    String name;
+    private String name;
 
-    String phoneNumber;
+   private String phoneNumber;
 
-    String password;
+  private String password;
 
-    @OneToOne
-            @JoinColumn
-    List<Reservation> reservationList;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Reservation> reservationList;
 
     public User(String name, String phoneNumber, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.reservationList=new ArrayList<>();
     }
 
     public User() {

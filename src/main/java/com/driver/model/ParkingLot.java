@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name="parkinglot")
 public class ParkingLot {
 
     @Id
@@ -16,7 +16,7 @@ public class ParkingLot {
     private String address;
 
     @OneToMany(mappedBy = "parkingLot", cascade = CascadeType.ALL)
-    List<Spot> spotList;
+    private List<Spot> spotList;
 
     public ParkingLot(String name, String address) {
         this.name = name;

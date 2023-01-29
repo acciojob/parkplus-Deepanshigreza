@@ -1,6 +1,7 @@
 package com.driver.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,10 +12,10 @@ public class Spot {
     int id;
 
     @Enumerated(value = EnumType.STRING)
-    SpotType spotType;
+    private SpotType spotType;
 
-    int pricePerHour;
-    Boolean occupied;
+    private int pricePerHour;
+    private boolean occupied;
 
     @ManyToOne
     @JoinColumn
@@ -27,6 +28,7 @@ public class Spot {
         this.spotType = spotType;
         this.pricePerHour = pricePerHour;
         this.occupied = occupied;
+        this.reservationList = new ArrayList<>();
     }
 
     public Spot(ParkingLot parkingLot,Integer numberOfWheels, Integer pricePerHour) {
